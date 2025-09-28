@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { useTheme } from '@/components/theme-provider';
 import { 
   User, 
   Palette, 
@@ -17,6 +18,8 @@ import {
 } from 'lucide-react';
 
 export function SettingsPage() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="space-y-8">
       {/* Profile Settings */}
@@ -30,24 +33,24 @@ export function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="firstName">First Name</Label>
-              <Input id="firstName" defaultValue="John" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lastName">Last Name</Label>
-              <Input id="lastName" defaultValue="Doe" />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="firstName">First Name</Label>
+            <Input id="firstName" placeholder="Enter your first name" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="lastName">Last Name</Label>
+            <Input id="lastName" placeholder="Enter your last name" />
+          </div>
           </div>
           
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" defaultValue="john.doe@example.com" />
+            <Input id="email" type="email" placeholder="Enter your email" />
           </div>
           
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
-            <Input id="username" defaultValue="johndoe" />
+            <Input id="username" placeholder="Choose a username" />
           </div>
 
           <Button>Save Changes</Button>
@@ -67,7 +70,7 @@ export function SettingsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label>Theme</Label>
-              <Select defaultValue="dark">
+              <Select value={theme} onValueChange={setTheme}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -125,16 +128,14 @@ export function SettingsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label>Default Language</Label>
-              <Select defaultValue="python">
+              <Select defaultValue="java">
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="python">Python</SelectItem>
-                  <SelectItem value="javascript">JavaScript</SelectItem>
-                  <SelectItem value="java">Java</SelectItem>
+                  <SelectItem value="c">C</SelectItem>
                   <SelectItem value="cpp">C++</SelectItem>
-                  <SelectItem value="go">Go</SelectItem>
+                  <SelectItem value="java">Java</SelectItem>
                 </SelectContent>
               </Select>
             </div>
